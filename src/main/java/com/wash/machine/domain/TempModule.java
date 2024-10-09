@@ -10,7 +10,7 @@ private double currentTemp;
 
     public TempModule(TempScale scale, double maxTemp, double minTemp, double currentTemp) {
         this.scale = scale;
-        this.maxTemp = maxTemp;
+        this.maxTemp = maxTemp =90;
         this.minTemp = minTemp;
         this.currentTemp = currentTemp;
     }
@@ -34,6 +34,8 @@ private double currentTemp;
 
         }
     }
+
+
 
     @Override
     public String toString() {
