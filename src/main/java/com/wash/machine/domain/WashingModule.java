@@ -5,8 +5,8 @@ public class WashingModule {
     private int id;
     private ProgramName programName;
     private int defaultSpinSpeed;
-    private double defaultLaundryDuration;
-    private double maxCapacity;
+    private int defaultLaundryDuration;
+    private int maxCapacity;
 
 
 }

@@ -1,6 +1,11 @@
 package com.wash.machine.domain;
 
-public class WashingMachine {
 
 
-}
+    abstract class WashingMachine implements WashingMachineInterface {
+        private ProgramModule programModule;
+        private TempModule tempModule;
+        private WashingHistoryModule historyModule;
+        private int startDelay;
+
+    }
