@@ -6,16 +6,39 @@ import java.util.List;
 public class ProgramModule   {
         private final ProgramName name;
         private final int minV;
-        private  final int maxV;
-        private static final int SPIN_STEP = 100;
-        private static final int DELICATE_MAX_V = 500;
-        private int currentSpinSpeed;
-        private double currentCapacity;
-
-
-        private double currentTemp;
+        private final int maxV;
+        private final double minTemp;
+        private final double maxTemp;
         private TempScale tempScale;
-        private double stepTemp;
+
+        public ProgramModule(ProgramName name, int minV, int maxV, double minTemp, double maxTemp, TempScale tempScale) {
+                this.name = name;
+                this.minV = minV;
+                this.maxV = maxV;
+                this.minTemp = minTemp;
+                this.maxTemp = maxTemp;
+                this.tempScale = tempScale;
+        }
+
+        public int getMinV() {
+                return minV;
+        }
+
+        public int getMaxV() {
+                return maxV;
+        }
+
+        public ProgramName getName() {
+                return name;
+        }
+
+        public double getMinTemp() {
+                return minTemp;
+        }
+
+        public double getMaxTemp() {
+                return maxTemp;
+        }
 }
 
 
