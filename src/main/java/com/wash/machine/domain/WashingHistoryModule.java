@@ -8,6 +8,7 @@ public class WashingHistoryModule {
     private static final int MAX_HISTORY = 30;
 
     public WashingHistoryModule() {
+
         this.history = new LinkedList<>();
     }
 }

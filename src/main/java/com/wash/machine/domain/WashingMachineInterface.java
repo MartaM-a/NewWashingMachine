@@ -1,11 +1,11 @@
 package com.wash.machine.domain;
 
 public interface WashingMachineInterface {
-    boolean checkCapacity(double weight);
-    void setProgram(ProgramName program);
-    void setTemperature(double temperature);
-    void setSpinSpeed(int speed);
-    void setStartDelay(int minutes);
+    boolean checkCapacity();
+    void setProgram();
+    void setTemperature();
+    void setSpinSpeed();
+    void setStartDelay();
     void showStatus();
     void addToHistory();
 
