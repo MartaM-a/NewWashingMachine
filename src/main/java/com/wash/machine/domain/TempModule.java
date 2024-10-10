@@ -27,7 +27,7 @@ public class TempModule {
     }
 
 
-    public boolean
+
 //    public boolean withinRange(ProgramModule program) {
 //        return this.value >= program.getMinTemp().toScale(this.scale).value
 //                && this.value <= program.getMaxTemp().toScale(this.scale).value;
