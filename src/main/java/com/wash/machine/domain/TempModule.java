@@ -1,78 +1,46 @@
 package com.wash.machine.domain;
 
 public class TempModule {
-private TempScale scale;
-private  double maxTemp;
-private  double minTemp;
-private double currentTemp;
+    private TempScale scale;
+    private double value;
 
-
-
-    public TempModule(TempScale scale, double maxTemp, double minTemp, double currentTemp) {
+    public TempModule(double value, TempScale scale) {
         this.scale = scale;
-        this.maxTemp = maxTemp =90;
-        this.minTemp = minTemp;
-        this.currentTemp = currentTemp;
+        this.value = value;
     }
 
-    public void tempUp() {
-        switch (scale) {
-            case CELSIUS:
-                currentTemp += 0.5;
-            case FAHRENHEIT:
-                currentTemp += 1;
-
-        }
+    public void tempUp(double step) {
+        this.value += step;
     }
 
-    public void tempDown() {
-        switch (scale) {
-            case CELSIUS:
-                currentTemp -= 0.5;
-            case FAHRENHEIT:
-                currentTemp -= 1;
-
-        }
+    public void tempDown(double step) {
+        value -= step;
     }
-
-
 
     @Override
     public String toString() {
-        return currentTemp + scale.toString();
+        return value + scale.toString();
     }
 
     public TempScale getScale() {
         return scale;
     }
 
-    public void setScale(TempScale scale) {
-        this.scale = scale;
-    }
 
-    public double getMaxTemp() {
-        return maxTemp;
-    }
+    public boolean
+//    public boolean withinRange(ProgramModule program) {
+//        return this.value >= program.getMinTemp().toScale(this.scale).value
+//                && this.value <= program.getMaxTemp().toScale(this.scale).value;
+//    }
+//
+//
 
-    public void setMaxTemp(double maxTemp) {
-        this.maxTemp = maxTemp;
-    }
-
-    public double getMinTemp() {
-        return minTemp;
-    }
-
-    public void setMinTemp(double minTemp) {
-        this.minTemp = minTemp;
-    }
-
-    public double getCurrentTemp() {
-        return currentTemp;
-    }
-
-    public void setCurrentTemp(double currentTemp) {
-        this.currentTemp = currentTemp;
-    }
+//    public TempModule toScale(TempScale toScale) {
+//        return switch (this.scale) {
+//            case CELSIUS -> toScale == TempScale.CELSIUS ? this : new TempModule(Math.round(this.value * 1.8 + 32), this.scale);
+//            case FAHRENHEIT -> toScale == TempScale.FAHRENHEIT ? this : new TempModule(Math.round((this.value - 32) / 1.8), this.scale);
+//        };
+//    }
 }
 
 

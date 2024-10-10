@@ -20,66 +20,49 @@ public class WashingModule {
 
     public void add(ProgramModule program) {
         for (ProgramModule next : programs) {
-            if (next.getName().equals((program.getName()))) {
+            if (next.getName().equals(program.getName())) {
                 throw new IllegalArgumentException("Program" + program.getName() + "exist");
 
 
             }
-        }
-        programs.add(program);
-    }
 
-    public ProgramModule getProgramModule(int i) {
+
+        }
+    }
+    public ProgramModule getProgram(int i) {
         if (i >= programs.size()) {
-            return programs.get(i);
+            // throw new IllegalArgumentException("Program index is out of range: " + i);
         }
-
-//        public ProgramModule nextProgramModule(ProgramModule program) {
-//            int index = programs.indexOf(program);
-
         return programs.get(i);
-
-}
-        public ProgramModule nextProgramModule (ProgramModule program){
-            int index = programs.indexOf(program);
-            if (index == -1) {
-                throw new IllegalArgumentException("Invalid program: " + program.getName());
-            }
-            if (++index == programs.size()) {
-                index = 0;
-            }
-            return programs.get(index);
+    }
+    public ProgramModule nextProgram(ProgramModule program) {
+        int index = programs.indexOf(program);
+        if (index == -1) {
+            throw new IllegalArgumentException("Invalid program: " + program.getName());
         }
-        public ProgramModule previosProgramModule (ProgramModule program){
-            int index = programs.indexOf(program);
-            if (index == -1) {
-                throw new IllegalArgumentException("Invalid program: " + program.getName());
-            }
-            if (--index < 0) {
-                index = programs.size() - 1;
-            }
-            return programs.get(index);
+        if (++index == programs.size()) {
+            index = 0;
         }
-        public int number (ProgramModule program){
-            int index = programs.indexOf(program);
-            if (index == -1) {
-                throw new IllegalArgumentException("Invalid program: " + program.getName());
-            }
-            return index + 1;
-        }
+        return programs.get(index);
     }
 
+    public ProgramModule previosProgram(ProgramModule program) {
+        int index = programs.indexOf(program);
+        if (index == -1) {
+            throw new IllegalArgumentException("Invalid program: " + program.getName());
+        }
+        if (--index < 0) {
+            index = programs.size() - 1;
+        }
+        return programs.get(index);
+    }
+    public int number(ProgramModule program) {
+        int index = programs.indexOf(program);
+        if (index == -1) {
+            throw new IllegalArgumentException("Invalid program: " + program.getName());
+        }
+        return index + 1;
+    }
+}
 
-//    private int id;
-//    private int defaultSpinSpeed;
-//    private int defaultLaundryDuration;
-//    private int maxCapacity;
-//
-//    public WashingModule(int id, ProgramName programName, int defaultSpinSpeed,
-//                         int defaultLaundryDuration, int maxCapacity) {
-//        this.id = id;
-//        this.defaultSpinSpeed = defaultSpinSpeed;
-//        this.defaultLaundryDuration = defaultLaundryDuration;
-//        this.maxCapacity = maxCapacity;
-//    }
-//}
+
