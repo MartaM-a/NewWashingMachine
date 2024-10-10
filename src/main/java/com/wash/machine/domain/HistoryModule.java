@@ -32,7 +32,7 @@ public class HistoryModule {
         @Override
         public String toString() {
             return "name=" + name
-                    +", temp=" + temp
+                    + ", temp=" + temp
                     + ", v=" + v;
         }
     }
@@ -48,9 +48,6 @@ public class HistoryModule {
         this.logs.add(0, log);
     }
 
-    public List<Log> getLogs() {
-        return logs;
-    }
 
     @Override
     public String toString() {
@@ -61,6 +58,7 @@ public class HistoryModule {
         }
         return b.toString();
     }
-}
 
+
+}
 

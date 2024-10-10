@@ -19,7 +19,7 @@ public class TempModule {
 
     @Override
     public String toString() {
-        return value + scale.toString();
+        return ((int)(value * 10))/10. + scale.toString();
     }
 
     public TempScale getScale() {
@@ -28,19 +28,19 @@ public class TempModule {
 
 
 
-//    public boolean withinRange(ProgramModule program) {
-//        return this.value >= program.getMinTemp().toScale(this.scale).value
-//                && this.value <= program.getMaxTemp().toScale(this.scale).value;
-//    }
-//
-//
+    public boolean withinRange(ProgramModule program) {
+        return this.value >= program.getMinTemp().toScale(this.scale).value
+                && this.value <= program.getMaxTemp().toScale(this.scale).value;
+    }
 
-//    public TempModule toScale(TempScale toScale) {
-//        return switch (this.scale) {
-//            case CELSIUS -> toScale == TempScale.CELSIUS ? this : new TempModule(Math.round(this.value * 1.8 + 32), this.scale);
-//            case FAHRENHEIT -> toScale == TempScale.FAHRENHEIT ? this : new TempModule(Math.round((this.value - 32) / 1.8), this.scale);
-//        };
-//    }
+
+
+    public TempModule toScale(TempScale toScale) {
+        return switch (this.scale) {
+            case CELSIUS -> toScale == TempScale.CELSIUS ? this : new TempModule(Math.round(this.value * 1.8 + 32), toScale);
+            case FAHRENHEIT -> toScale == TempScale.FAHRENHEIT ? this : new TempModule(Math.round((this.value - 32) / 1.8), toScale);
+        };
+    }
 }
 
 

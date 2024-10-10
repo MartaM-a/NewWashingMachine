@@ -1,7 +1,5 @@
 package com.wash.machine.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProgramModule   {
         private final ProgramName name;
@@ -39,6 +37,11 @@ public class ProgramModule   {
         public TempModule getMaxTemp() {
 
                 return new TempModule(maxTemp, scale);
+        }
+
+        @Override
+        public String toString() {
+                return name.toString();
         }
 }
 

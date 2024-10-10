@@ -3,7 +3,6 @@ package com.wash.machine.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.awt.AWTEventMulticaster.add;
 
 public class WashingModule {
 
@@ -28,6 +27,7 @@ public class WashingModule {
 
 
         }
+        programs.add(program);
     }
     public ProgramModule getProgram(int i) {
         if (i >= programs.size()) {
@@ -46,7 +46,7 @@ public class WashingModule {
         return programs.get(index);
     }
 
-    public ProgramModule previosProgram(ProgramModule program) {
+    public ProgramModule previousProgram(ProgramModule program) {
         int index = programs.indexOf(program);
         if (index == -1) {
             throw new IllegalArgumentException("Invalid program: " + program.getName());
