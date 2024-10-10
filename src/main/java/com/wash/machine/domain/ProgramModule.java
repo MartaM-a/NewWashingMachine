@@ -9,7 +9,7 @@ public class ProgramModule   {
         private final int maxV;
         private final double minTemp;
         private final double maxTemp;
-        private TempScale tempScale;
+        private TempScale scale;
 
         public ProgramModule(ProgramName name, int minV, int maxV, double minTemp, double maxTemp, TempScale tempScale) {
                 this.name = name;
@@ -17,7 +17,7 @@ public class ProgramModule   {
                 this.maxV = maxV;
                 this.minTemp = minTemp;
                 this.maxTemp = maxTemp;
-                this.tempScale = tempScale;
+                this.scale = tempScale;
         }
 
         public int getMinV() {
@@ -32,12 +32,13 @@ public class ProgramModule   {
                 return name;
         }
 
-        public double getMinTemp() {
-                return minTemp;
+        public TempModule getMinTemp() {
+                return new TempModule(minTemp, scale);
         }
 
-        public double getMaxTemp() {
-                return maxTemp;
+        public TempModule getMaxTemp() {
+
+                return new TempModule(maxTemp, scale);
         }
 }
 
