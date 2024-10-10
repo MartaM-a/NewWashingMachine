@@ -28,35 +28,45 @@ public class WashingModule {
         }
         programs.add(program);
     }
+
     public ProgramModule getProgramModule(int i) {
         if (i >= programs.size()) {
             return programs.get(i);
         }
 
-        public ProgramModule nextProgramModule(ProgramModule program) {
-            int index = programs.indexOf(program);
-        }
+//        public ProgramModule nextProgramModule(ProgramModule program) {
+//            int index = programs.indexOf(program);
+
         return programs.get(i);
-    }
-    public ProgramModule nextProgram(ProgramModule program) {
-        int index = programs.indexOf(program);
-        if (index == -1) {
-            throw new IllegalArgumentException("Invalid program: " + program.getName());
+
+}
+        public ProgramModule nextProgramModule (ProgramModule program){
+            int index = programs.indexOf(program);
+            if (index == -1) {
+                throw new IllegalArgumentException("Invalid program: " + program.getName());
+            }
+            if (++index == programs.size()) {
+                index = 0;
+            }
+            return programs.get(index);
         }
-        if (++index == programs.size()) {
-            index = 0;
+        public ProgramModule previosProgramModule (ProgramModule program){
+            int index = programs.indexOf(program);
+            if (index == -1) {
+                throw new IllegalArgumentException("Invalid program: " + program.getName());
+            }
+            if (--index < 0) {
+                index = programs.size() - 1;
+            }
+            return programs.get(index);
         }
-        return programs.get(index);
-    }
-    public ProgramModule previosProgram (ProgramModule program) {
-        int index = programs.indexOf(program);
-        if (index == -1) {
-            throw new IllegalArgumentException("Invalid program: " + program.getName());
+        public int number (ProgramModule program){
+            int index = programs.indexOf(program);
+            if (index == -1) {
+                throw new IllegalArgumentException("Invalid program: " + program.getName());
+            }
+            return index + 1;
         }
-        if (--index < 0) {
-            index = programs.size() - 1;
-        }
-        return programs.get(index);
     }
 
 
@@ -73,4 +83,3 @@ public class WashingModule {
 //        this.maxCapacity = maxCapacity;
 //    }
 //}
-}

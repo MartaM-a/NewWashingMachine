@@ -21,7 +21,7 @@ public class WashingMachine {
                         new WashingModule(ECO, 100, 400, 30., 50., CELSIUS),
                         new WashingModule(BABY, 100, 500, 40., 50., CELSIUS),
                         new WashingModule(SUPERQUICK, 100, 800, 30., 50., CELSIUS)
-                )
+                );
 
                 );
 
