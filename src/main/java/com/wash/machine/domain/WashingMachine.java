@@ -1,7 +1,6 @@
 package com.wash.machine.domain;
 
-import static com.wash.machine.domain.ProgramName.*;
-import static com.wash.machine.domain.TempScale.CELSIUS;
+
 public class WashingMachine {
 
     private static final int stepV = 100;
