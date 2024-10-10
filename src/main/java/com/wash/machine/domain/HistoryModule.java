@@ -3,11 +3,11 @@ package com.wash.machine.domain;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class WashingHistoryModule {
+public class HistoryModule {
     private LinkedList<Map<String, Object>> history;
     private static final int MAX_HISTORY = 30;
 
-    public WashingHistoryModule() {
+    public HistoryModule() {
 
         this.history = new LinkedList<>();
     }

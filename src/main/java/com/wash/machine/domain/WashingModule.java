@@ -20,7 +20,7 @@ public class WashingModule {
 
     public void add(ProgramModule program) {
         for (ProgramModule next : programs) {
-            if (next.getName().equals((program.getName())) {
+            if (next.getName().equals((program.getName()))) {
                 throw new IllegalArgumentException("Program" + program.getName() + "exist");
 
 
@@ -28,7 +28,14 @@ public class WashingModule {
         }
 
     }
+    public ProgramModule getProgramModule(int i) {
+        if (i >= programs.size()) {
+        return programs.get(i);
+        }
 
+    public ProgramModule nextProgramModule(ProgramModule program) {
+            int index = programs.indexOf(program);
+        }
 
 //    private int id;
 //    private int defaultSpinSpeed;
