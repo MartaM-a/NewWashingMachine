@@ -1,6 +1,8 @@
 package com.wash.machine.domain;
 
-public class Beko extends WashingMachine {
+import com.wash.machine.service.WashingMachineLoad;
+
+public class Beko extends WashingMachineLoad {
     public Beko() {
         super("Beko");
     }
