@@ -5,6 +5,6 @@ import com.wash.machine.service.WashingMachineLoad;
 public class Amica extends WashingMachineLoad {
 
     public Amica() {
-        super("Amica");
+        super("Amica" ,6.);
     }
 }

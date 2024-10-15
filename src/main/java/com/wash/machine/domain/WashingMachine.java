@@ -1,6 +1,7 @@
 package com.wash.machine.domain;
 
 
+import com.wash.machine.exception.MaxLoadExceedException;
 import com.wash.machine.exception.SpeedOutOfRangeException;
 import com.wash.machine.exception.TemperatureIsOutOfRange;
 
@@ -140,32 +141,49 @@ public class WashingMachine {
         this.currentV -= STEP_V;
     }
 
+    public double getLoad () {
+        return  0. ;
+
+    }
+
+    public  double maxLoad () {
+        return Double.MAX_VALUE;
+    }
 
     public void start() {
+        if (getLoad() > maxLoad()) {
+            throw new MaxLoadExceedException("Max load exceeded");
+        }
 
 
         this.history.add(createLog());
     }
 
+        public String expectedTime (){
+        int time = (int) (100 * getLoad() / maxLoad());
+        return  time == 0 ? "undefined" : time + "min";
 
+        }
     protected HistoryModule.Log createLog() {
         return new HistoryModule.Log(this.currentProgram, this.currentTemp, this.currentV);
     }
 
-//    public HistoryModule getHistory() {
-//        return history;
-//    }
+    public HistoryModule getHistory() {
+        return history;
+    }
 
 
 
     public void showStatus() {
-
+double load = getLoad();
+double maxload =maxLoad();
         System.out.println("\t" + name + ". Current program " + this.programs.number(this.currentProgram) + " " + this.currentProgram
                 + " at temperature " + this.currentTemp
                 + ", speed " + this.currentV
-
+                + (load > 0. ? ", load" + load + "kg(" + (int) (load * 100 / maxload) + "%), expected time" + expectedTime() : "")
         );
     }
+
 
     public void showHistory() {
         System.out.println("History:\n" + history);

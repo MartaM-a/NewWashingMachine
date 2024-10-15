@@ -4,7 +4,7 @@ import com.wash.machine.service.WashingMachineLoad;
 
 public class Beko extends WashingMachineLoad {
     public Beko() {
-        super("Beko");
+        super("Beko", 5.);
     }
 
     @Override
