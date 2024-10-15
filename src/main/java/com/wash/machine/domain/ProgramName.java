@@ -1,5 +1,5 @@
 package com.wash.machine.domain;
-enum ProgramName {
+ public enum ProgramName {
     COTTON,
     SYNTHETIC,
     DELICATE,

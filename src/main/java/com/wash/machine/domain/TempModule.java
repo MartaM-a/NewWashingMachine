@@ -4,6 +4,10 @@ public class TempModule {
     private TempScale scale;
     private double value;
 
+    public double getValue() {
+        return value;
+    }
+
     public TempModule(double value, TempScale scale) {
         this.scale = scale;
         this.value = value;

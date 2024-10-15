@@ -2,10 +2,12 @@ package com.wash.machine;
 
 
 import com.wash.machine.domain.*;
+import com.wash.machine.service.WashingMachineService;
 
 import java.security.SecureRandom;
+import java.util.List;
 
-import static com.wash.machine.domain.TempScale.FAHRENHEIT;
+
 import static java.lang.System.out;
 
 public class Main {
@@ -19,44 +21,28 @@ public class Main {
 
 
     private static void run(WashingMachine machine) {
-
-        out.println("Set up a program");
-        machine.setProgram(0);
+        WashingMachineService service = new WashingMachineService();
+        List<ProgramName> programs = machine .getPrograms();
         for (int run = 0; run < 30; run++) {
 
-
-            out.println("Switch to next program");
-            for (int i = 0; i < RANDOM.nextInt(15); i++) {
-                machine.nextProgram();
-            }
-            for (int i = 0; i < RANDOM.nextInt(2); i++) {
-                machine.previousProgram();
-            }
-            out.println("Set up a temperature");
-            for (int i = 0; i < RANDOM.nextInt(4); i++) {
-                machine.tempUp();
-            }
-
-            for (int i = 0; i < RANDOM.nextInt(20); i++) {
-                machine.tempDown();
-            }
-
-            for (int i = 0; i < RANDOM.nextInt(2); i++) {
-                machine.tempScale(FAHRENHEIT);
-                out.println("Switch a scale");
-            }
-
-            out.println("Raise a speed");
-            for (int i = 0; i < RANDOM.nextInt(2); i++) {
-                machine.upV();
-            }
+            ProgramName name = programs.get(RANDOM.nextInt(programs.size()));
+            ProgramModule program = machine.getProgram(name);
 
 
-            machine.showStatus();
+            double temp = RANDOM.nextDouble(program.getMinTemp().getValue(), program.getMaxTemp().getValue());
 
-            out.println("Start");
-            machine.start();
+
+            int V = RANDOM.nextInt(program.getMinV()/WashingMachine.STEP_V, program.getMaxV()/WashingMachine.STEP_V +1 ) * WashingMachine.STEP_V;
+
+            service.run(machine, name, temp,program.getMaxTemp().getScale(), V);
+
+
         }
+
+
+        machine.showStatus();
+
+
 
         machine.showHistory();
 

@@ -4,9 +4,11 @@ package com.wash.machine.domain;
 import com.wash.machine.exception.SpeedOutOfRangeException;
 import com.wash.machine.exception.TemperatureIsOutOfRange;
 
+import java.util.List;
+
 public class WashingMachine {
 
-    private static final int stepV = 100;
+    public static final int STEP_V = 100;
     private final String name;
     private final WashingModule programs;
     private ProgramModule currentProgram;
@@ -44,12 +46,12 @@ public class WashingMachine {
         this.history = new HistoryModule();
     }
 
-    public ProgramModule setProgram(int i) {
-        return setProgram(programs.getProgram(i));
+    public ProgramModule setProgram(ProgramName name) {
+        return setProgram(programs.getProgram(name));
     }
 
-    public ProgramModule getProgram() {
-        return currentProgram;
+    public ProgramModule getProgram(ProgramName name)  {
+        return programs.getProgram(name);
     }
 
     public ProgramModule nextProgram() {
@@ -74,8 +76,9 @@ public class WashingMachine {
 
     public void setTemp(TempModule temp) {
         if (!temp.withinRange(this.currentProgram)) {
-            throw new TemperatureIsOutOfRange("Temperature is out of range: " + temp);
+            throw new TemperatureIsOutOfRange("Temperature is out of range");
         }
+
         this.currentTemp = temp;
     }
 
@@ -113,8 +116,8 @@ public class WashingMachine {
                 || v > this.currentProgram.getMaxV()) {
             throw new SpeedOutOfRangeException("Speed is out of range: " + v);
         }
-        if (v % stepV != 0) {
-            throw new SpeedOutOfRangeException("Speed should be a power of " + stepV + " but was: " + v);
+        if (v % STEP_V != 0) {
+            throw new SpeedOutOfRangeException("Speed should be a power of " + STEP_V + " but was: " + v);
         }
         this.currentV = v;
     }
@@ -127,14 +130,14 @@ public class WashingMachine {
         if (this.currentV == this.currentProgram.getMaxV()) {
             throw new SpeedOutOfRangeException("Speed is out of range: " + this.currentProgram.getMaxV());
         }
-        this.currentV += stepV;
+        this.currentV += STEP_V;
     }
 
     public void downV() {
         if (this.currentV == this.currentProgram.getMinV()) {
             throw new SpeedOutOfRangeException("Speed is out of range: " + this.currentProgram.getMinV());
         }
-        this.currentV -= stepV;
+        this.currentV -= STEP_V;
     }
 
 
@@ -149,9 +152,9 @@ public class WashingMachine {
         return new HistoryModule.Log(this.currentProgram, this.currentTemp, this.currentV);
     }
 
-    public HistoryModule getHistory() {
-        return history;
-    }
+//    public HistoryModule getHistory() {
+//        return history;
+//    }
 
 
 
@@ -169,4 +172,8 @@ public class WashingMachine {
     }
 
 
+    public List<ProgramName> getPrograms() {
+        return programs.getNames ();
+
+    }
 }

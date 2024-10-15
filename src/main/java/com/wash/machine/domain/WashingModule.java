@@ -19,27 +19,28 @@ public class WashingModule {
 
     public void add(ProgramModule program) {
         for (ProgramModule next : programs) {
-            if (next.getName().equals(program.getName())) {
-                throw new IllegalArgumentException("Program" + program.getName() + "exist");
-
-
+            if (next.getName().equals(program.getName())){
+                throw new IllegalArgumentException("Program " + program.getName() + " already exists");
             }
 
 
         }
         programs.add(program);
     }
-    public ProgramModule getProgram(int i) {
-        if (i >= programs.size()) {
-            // throw new IllegalArgumentException("Program index is out of range: " + i);
+    public ProgramModule getProgram(ProgramName name) {
+        for (ProgramModule next : programs) {
+            if (next.getName().equals(name)) {
+                return next;
+            }
+
         }
-        return programs.get(i);
+        throw new IllegalArgumentException("Program " + name + " not found" );
     }
+
+
     public ProgramModule nextProgram(ProgramModule program) {
         int index = programs.indexOf(program);
-        if (index == -1) {
-            throw new IllegalArgumentException("Invalid program: " + program.getName());
-        }
+
         if (++index == programs.size()) {
             index = 0;
         }
@@ -48,9 +49,7 @@ public class WashingModule {
 
     public ProgramModule previousProgram(ProgramModule program) {
         int index = programs.indexOf(program);
-        if (index == -1) {
-            throw new IllegalArgumentException("Invalid program: " + program.getName());
-        }
+
         if (--index < 0) {
             index = programs.size() - 1;
         }
@@ -58,10 +57,18 @@ public class WashingModule {
     }
     public int number(ProgramModule program) {
         int index = programs.indexOf(program);
-        if (index == -1) {
-            throw new IllegalArgumentException("Invalid program: " + program.getName());
-        }
+
         return index + 1;
+    }
+
+    public List<ProgramName> getNames() {
+        List <ProgramName> names = new ArrayList<>();
+        for (ProgramModule program : programs){
+            names.add(program.getName());
+
+
+        }
+        return names;
     }
 }
 
