@@ -41,6 +41,10 @@ public class HistoryModule {
 
     private final List<Log> logs = new ArrayList<>();
 
+    public List<Log> getLogs() {
+        return logs;
+    }
+
     public void add(Log log) {
         if (this.logs.size() == MAX_SIZE) {
             this.logs.remove(MAX_SIZE - 1);

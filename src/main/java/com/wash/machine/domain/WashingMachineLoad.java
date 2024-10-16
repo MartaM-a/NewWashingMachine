@@ -1,9 +1,4 @@
-package com.wash.machine.service;
-
-import com.wash.machine.domain.HistoryModule;
-import com.wash.machine.domain.ProgramModule;
-import com.wash.machine.domain.TempModule;
-import com.wash.machine.domain.WashingMachine;
+package com.wash.machine.domain;
 
 
 public class WashingMachineLoad extends WashingMachine {
@@ -13,7 +8,7 @@ public class WashingMachineLoad extends WashingMachine {
 
         public LogWithWeight(ProgramModule program, TempModule temp, int v, int loadPercent){
             super (program, temp,v);
-            this.loadPercent;
+            this.loadPercent = loadPercent;
         }
 
         public int getLoadPercent () {
@@ -35,12 +30,12 @@ public class WashingMachineLoad extends WashingMachine {
 
     }
 public void setLoad (double load) {
-        this.currentLoad = load;
+    this.currentLoad = load;
 
-
+}
    @Override
  public double getLoad() {
-       return this.maxLoad;
+       return this.currentLoad;
     }
    @Override
   public double maxLoad() {
@@ -48,9 +43,9 @@ public void setLoad (double load) {
     }
     @Override
      protected HistoryModule.Log createLog(){
-       return new LogWithWeight(getProgram(), getTemp(), getV(), (int) (this.currentLoad * 100/ this.maxLoad));
+       return new LogWithWeight(getProgram(), getTemp(), getV(), (int) (getLoad() * 100 / maxLoad ()));
 
     }
 
 }
-}
+

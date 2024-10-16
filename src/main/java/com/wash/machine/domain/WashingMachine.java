@@ -53,6 +53,10 @@ public class WashingMachine {
 
     public ProgramModule getProgram(ProgramName name)  {
         return programs.getProgram(name);
+
+    }
+    public ProgramModule getProgram()  {
+        return currentProgram;
     }
 
     public ProgramModule nextProgram() {
@@ -159,11 +163,7 @@ public class WashingMachine {
         this.history.add(createLog());
     }
 
-        public String expectedTime (){
-        int time = (int) (100 * getLoad() / maxLoad());
-        return  time == 0 ? "undefined" : time + "min";
 
-        }
     protected HistoryModule.Log createLog() {
         return new HistoryModule.Log(this.currentProgram, this.currentTemp, this.currentV);
     }
@@ -172,6 +172,11 @@ public class WashingMachine {
         return history;
     }
 
+    public String expectedTime (){
+        int time = (int) (100 * getLoad() / maxLoad());
+        return  time == 0 ? "undefined" : time + "min";
+
+    }
 
 
     public void showStatus() {
@@ -180,7 +185,7 @@ double maxload =maxLoad();
         System.out.println("\t" + name + ". Current program " + this.programs.number(this.currentProgram) + " " + this.currentProgram
                 + " at temperature " + this.currentTemp
                 + ", speed " + this.currentV
-                + (load > 0. ? ", load" + load + "kg(" + (int) (load * 100 / maxload) + "%), expected time" + expectedTime() : "")
+                + (load > 0. ? ", load " + ((int) (load * 100)) / 100. + " kg(" + (int) (load * 100 / maxload) + "%), expected time " + expectedTime(): "")
         );
     }
 
